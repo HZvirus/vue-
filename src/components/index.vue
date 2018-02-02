@@ -20,12 +20,12 @@
         </div>
       </transition>
      <div v-if="nowData.basic" class="today" v-bind:class="`today${nowData.now.cond_code}`">
-      <div class="now">
-        <h1 @click="cityboxShow" v-if="nowData.basic">{{nowData.basic.parent_city}}▼</h1>
-        <h2>{{nowData.now.tmp}}</h2>
-        <h3>{{nowData.now.cond_txt}} / {{nowData.now.wind_dir}}{{nowData.now.wind_sc}}级</h3>
-        <router-link v-if="airData.air_now_city" v-bind:class="`air${colorClass}`" class="child-view air" to="/air">{{airData.air_now_city.aqi}} {{airData.air_now_city.qlty}}</router-link>
-        <p>相对湿度 : {{nowData.now.hum}}</p>
+        <div class="now">
+          <h1 @click="cityboxShow" v-if="nowData.basic">{{nowData.basic.parent_city}}▼</h1>
+          <h2>{{nowData.now.tmp}}</h2>
+          <h3>{{nowData.now.cond_txt}} / {{nowData.now.wind_dir}}{{nowData.now.wind_sc}}级</h3>
+          <router-link v-if="airData.air_now_city" v-bind:class="`air${colorClass}`" class="child-view air" to="/air">{{airData.air_now_city.aqi}} {{airData.air_now_city.qlty}}</router-link>
+          <p>相对湿度 : {{nowData.now.hum}}</p>
       </div>
      <div class="hour">
         <ul>
@@ -87,6 +87,13 @@ export default {
   created () {
 
   },
+  watch: {
+  '$route' (to, from) {
+    const toDepth = to.path.split('/').length
+    const fromDepth = from.path.split('/').length
+    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+  }
+},
   mounted () {
     this.getCity()
     this.getnowData()
@@ -164,43 +171,33 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped> 
-.slide-fade-enter-active {
-  transition: all .3s ease;
+.left-fade-enter-active,.slide-fade-enter-active {
+  transition: 0.3s ease-in-out;
 }
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+.left-fade-leave-active,.slide-fade-leave-active {
+  transition: 0.3s ease-in-out;
+}
+.left-fade-enter, .left-fade-leave-to
+{
+  transform: translateX(-50px);
+  opacity: 0;
 }
 .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
+{
   transform: translateY(50px);
   opacity: 0;
 }
 
-.left-fade-enter-active {
-  transition: all .2s ease-in-out;
-}
-.left-fade-leave-active {
-  transition: all .2s ease-in-out;
-}
-.left-fade-enter, .left-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateX(-50px);
-  opacity: 0;
-}
 
 
-::-webkit-scrollbar {display:none}
 .today{
   height: 370px;
   padding-top: 10px;
   box-sizing: border-box;
   color: #fff;
+  transition: 1s ease-in-out;
 }
-.today h1{
-  font-size: 14px;
-  font-weight: normal;
-  margin-bottom: 15px;
-}
+
 .today h2{
   font-size: 84px;
   text-align: center;
@@ -302,7 +299,7 @@ export default {
 }
 .citybox{
   z-index: 99;
-  position: fixed;
+  position: absolute;
   width: 100%;
   top:0;
   background: rgba(255,255,255,0.5);
@@ -376,7 +373,7 @@ export default {
 /* 天气图标 */
  .icon{
   width: 58px;
-  height: 58px;
+  height: 54px;
   background: url("../../static/img/weatherIcon.png")no-repeat;
 }
 /* 多云 */

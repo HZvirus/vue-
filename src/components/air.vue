@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     getlifestyleData(){
-        this.$store.dispatch('acgetlifestyleData')
+        this.$store.commit('getlifestyle')
     }
   }
 }
@@ -139,13 +139,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .airqlt{
-  height: 250px;
+  height: 230px;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(#2a6eb3),to(#4587cb));
   color: #fff;
+  padding: 20px 10px 0 10px;
+  box-sizing: border-box;
 }
 .airqlt-cover{
-   padding: 20px 10px 0 10px;
-  box-sizing: border-box;
+ 
 }
 .airqlt h1{
   font-size: 18px;
@@ -159,7 +160,7 @@ export default {
   font-size: 70px;
 }
 .airqlt h2 small{
-  font-size: 30px;
+  font-size: 24px;
   margin-left: 5px;
 }
 .progressbar{
@@ -176,7 +177,7 @@ export default {
   left: 0px;
 }
 .progressbar{
-  height: 96px;
+  height: 73px;
 }
 .progressbar-color{
   margin-bottom: 5px;
@@ -224,12 +225,11 @@ export default {
 .pollutants,.lifestyle{
   color:#000;
   padding: 0 10px;
-  margin-bottom: 10px;
-  height: 225px;
+  height: 210px;
 }
 .pollutants h3,.lifestyle h3{
   font-size: 20px;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 .pollutants li{
   width: 45%;
