@@ -87,13 +87,6 @@ export default {
   created () {
 
   },
-  watch: {
-  '$route' (to, from) {
-    const toDepth = to.path.split('/').length
-    const fromDepth = from.path.split('/').length
-    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-  }
-},
   mounted () {
     this.getCity()
     this.getnowData()
@@ -120,11 +113,9 @@ export default {
     items () {
       let _search = this.search;
       if (_search) {
-        return this.citylist.filter(function(product) {
-          return Object.keys(product).some(function(key) {
-            return String(product[key]).toLowerCase().indexOf(_search) > -1
-          })
-        })
+        return this.citylist.filter(
+        (product) => Object.keys(product).some((key) => String(product[key]).toLowerCase().indexOf(_search) > -1)
+        )
       }
       return this.citylist;
     },
@@ -219,6 +210,7 @@ export default {
 .now{
   width: 93%;
   margin:0 auto;
+  height: 245px;
 }
 .air{
   font-size: 16px;
@@ -258,10 +250,11 @@ export default {
 }
 .hour ul{
   width: 464px;
-  height: 63px;
+  height: 100%;
   margin: 0 auto;
 }
 .hour ul li{
+  height: 100%;
   width: 58px;
   float: left;
 }

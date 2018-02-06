@@ -72,9 +72,6 @@ const store = new Vuex.Store({
         commit('getweekData')
       },1000)
     },
-/*    acgetlifestyleData(context){
-      context.commit('getlifestyle')
-    },*/
   },
   getters:{
 
