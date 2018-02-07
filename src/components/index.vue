@@ -57,11 +57,11 @@ export default {
   name:'index',
   data () {
     return {
-      dayArr: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
-      citybox: false,
+      dayArr: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],  //周期
+      citybox: false,//
       hotorlist: false,
-      search: '',
-      hot:[
+      search: '',                                                        //输入框内容
+      hot:[                                                              //热门城市
         {cn: '北京',eng: 'beijing'},
         {cn: '上海',eng: 'shanghai'},
         {cn: '南京',eng: 'nanjing'},
@@ -70,8 +70,8 @@ export default {
         {cn: '黄山',eng: 'huangshan'},
         {cn: '三亚',eng: 'sanya'},
         {cn: '天津',eng: 'tianjin'},
-      ],
-      citylist: [
+      ],                                                                      
+      citylist: [                                                        //城市列表
         {cn: '北京',eng: 'beijing'},
         {cn: '上海',eng: 'shanghai'},
         {cn: '南京',eng: 'nanjing'},
@@ -94,7 +94,7 @@ export default {
     this.getweekData()
   },
   computed:{
-    colorClass () {
+    colorClass () {                                                      //空气质量颜色
       if( this.$store.state.airData.air_now_city.aqi <= 50){
         return 1
       }else if(this.$store.state.airData.air_now_city.aqi > 50 && this.$store.state.airData.air_now_city.aqi <= 100){
@@ -109,7 +109,7 @@ export default {
         return 6
       }
     },
-    items () {
+    items () {                                                          //城市筛选
       let _search = this.search;
       if (_search) {
         return this.citylist.filter(
@@ -145,7 +145,7 @@ export default {
     cityboxShow(){
       this.citybox = true
     },
-    changeCity(msg){
+    changeCity(msg){                                                    // 切换城市
         this.$store.commit('changeCity',{
           amount:msg
         })
