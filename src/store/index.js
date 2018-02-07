@@ -55,27 +55,24 @@ const store = new Vuex.Store({
     acgetnowData({commit}){
       setTimeout(() => {
         commit('getnowData')
-      },1000)
+      },500)
     },
     acgetairData({commit}){
       setTimeout(() => {
         commit('getairData')
-      },1000)
+      },500)
     },
     acgethourlyData({commit}){
       setTimeout(() => {
         commit('gethourlyData')
-      },1000)
+      },500)
     },
     acgetweekData({commit}){
       setTimeout(() => {
         commit('getweekData')
-      },1000)
+      },500)
     },
-  },
-  getters:{
-
-  }	  
+  },  
 })
 export default store;
 

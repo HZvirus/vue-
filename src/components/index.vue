@@ -57,7 +57,6 @@ export default {
   name:'index',
   data () {
     return {
-      transitionName:'slide-left',
       dayArr: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
       citybox: false,
       hotorlist: false,
@@ -178,9 +177,6 @@ export default {
   transform: translateY(50px);
   opacity: 0;
 }
-
-
-
 .today{
   height: 370px;
   padding-top: 10px;
@@ -188,7 +184,6 @@ export default {
   color: #fff;
   transition: 1s ease-in-out;
 }
-
 .today h2{
   font-size: 84px;
   text-align: center;

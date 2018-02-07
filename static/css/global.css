@@ -1,4 +1,4 @@
-*{margin: 0;padding:0;list-style: none;font:14px Arial,Helvetica,sans-serif;text-decoration: none;}
+*{margin: 0;padding:0;list-style: none;font-family:Microsoft YaHei,sans-serif;text-decoration: none;font-size: 14px;}
 ::-webkit-scrollbar {display:none}
 .appbox{
   max-width: 720px;

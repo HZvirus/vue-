@@ -145,9 +145,6 @@ export default {
   padding: 20px 10px 0 10px;
   box-sizing: border-box;
 }
-.airqlt-cover{
- 
-}
 .airqlt h1{
   font-size: 18px;
   margin-bottom: 30px;
@@ -209,7 +206,6 @@ export default {
 .progressbar-text li{
   width: 16.66%;
   float: left;
-
 }
 .progressbar-text li p:nth-child(1){
   text-align: right;
