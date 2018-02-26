@@ -9,6 +9,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const express = require('express')  
+const app = express()  
+const appData = require('../data.json')  
+const cities = appData.cities  
+const apiRouter = express.Router()  
+app.use('/api',apiRouter) 
+
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -22,6 +29,14 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    before(app) {
+    app.get('/api/cities', (req, res) => {
+      res.json({
+        errno: 0,
+        data: cities
+      })//接口返回json数据，上面配置的数据seller就赋值给data请求后调用
+    })
+},
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [

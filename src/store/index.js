@@ -11,9 +11,15 @@ const store = new Vuex.Store({
     airData:{},         //空气质量
     hourlyData:{},      //逐小时预报
     weekData:{},        //7天天气预报
-    lifestyleData:{}    //生活指数
+    lifestyleData:{},    //生活指数
+    cities:{}
   },
   mutations: {
+    getcities (state){
+      axios.get('http://localhost:8080/api/cities')
+      .then((res) => {state.cities = res.data.data ;console.log(state.cities)})
+      .catch((err) => console.log(err))
+    },
     //城市定位
     getCity (state){
     	axios.get('http://freegeoip.net/json/')
@@ -56,6 +62,9 @@ const store = new Vuex.Store({
     }
   },
   actions:{
+    acgetcities(context){
+      context.commit('getcities')
+    },
     acgetCity(context){
       context.commit('getCity')
     },

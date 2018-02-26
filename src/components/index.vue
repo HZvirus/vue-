@@ -8,12 +8,12 @@
           <div class="citybox_result">
             <ul class="hot">
               <li v-for="item in hot">
-                <span @click="changeCity(item.cn)">{{item.cn}}</span>
+                <span @click="changeCity(item.name)">{{item.name}}</span>
               </li>
             </ul>
             <ul v-show="search" class="list">
               <li v-for="item in items">
-                <span @click="changeCity(item.cn)">{{item.cn}}({{item.eng}})</span>
+                <span @click="changeCity(item.name)">{{item.name}}({{item.pinyin}})</span>
               </li>
             </ul>
           </div>
@@ -62,24 +62,24 @@ export default {
       hotorlist: false,
       search: '',                                                        //输入框内容
       hot:[                                                              //热门城市
-        {cn: '北京',eng: 'beijing'},
-        {cn: '上海',eng: 'shanghai'},
-        {cn: '南京',eng: 'nanjing'},
-        {cn: '杭州',eng: 'hangzhou'},
-        {cn: '宁波',eng: 'ningbo'},
-        {cn: '黄山',eng: 'huangshan'},
-        {cn: '三亚',eng: 'sanya'},
-        {cn: '天津',eng: 'tianjin'},
+        {name: '北京',pinyin: 'beijing'},
+        {name: '上海',pinyin: 'shanghai'},
+        {name: '南京',pinyin: 'nanjing'},
+        {name: '杭州',pinyin: 'hangzhou'},
+        {name: '宁波',pinyin: 'ningbo'},
+        {name: '黄山',pinyin: 'huangshan'},
+        {name: '三亚',pinyin: 'sanya'},
+        {name: '天津',pinyin: 'tianjin'},
       ],                                                                      
       citylist: [                                                        //城市列表
-        {cn: '北京',eng: 'beijing'},
-        {cn: '上海',eng: 'shanghai'},
-        {cn: '南京',eng: 'nanjing'},
-        {cn: '杭州',eng: 'hangzhou'},
-        {cn: '宁波',eng: 'ningbo'},
-        {cn: '黄山',eng: 'huangshan'},
-        {cn: '三亚',eng: 'sanya'},
-        {cn: '天津',eng: 'tianjin'},
+        {name: '北京',pinyin: 'beijing'},
+        {name: '上海',pinyin: 'shanghai'},
+        {name: '南京',pinyin: 'nanjing'},
+        {name: '杭州',pinyin: 'hangzhou'},
+        {name: '宁波',pinyin: 'ningbo'},
+        {name: '黄山',pinyin: 'huangshan'},
+        {name: '三亚',pinyin: 'sanya'},
+        {name: '天津',pinyin: 'tianjin'},
       ]
     }
   },
@@ -87,6 +87,7 @@ export default {
 
   },
   mounted () {
+    this.getcities()
     this.getCity()
     this.getnowData()
     this.getairData()
@@ -112,7 +113,7 @@ export default {
     items () {                                                          //城市筛选
       let _search = this.search;
       if (_search) {
-        return this.citylist.filter(
+        return this.$store.state.cities.filter(
         (product) => Object.keys(product).some((key) => String(product[key]).toLowerCase().indexOf(_search) > -1)
         )
       }
@@ -133,9 +134,13 @@ export default {
     weekData () {
       return this.$store.state.weekData
     },
+    cities () {
+      return this.$store.state.cities
+    }
   },
   methods: {
     ...mapMutations([
+      'getcities',
       'getCity',
       'getnowData',
       'getairData',
