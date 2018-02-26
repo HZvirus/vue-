@@ -15,11 +15,11 @@ const store = new Vuex.Store({
     cities:{}
   },
   mutations: {
-    getcities (state){
+    /*getcities (state){
       axios.get('http://localhost:8080/api/cities')
-      .then((res) => {state.cities = res.data.data ;console.log(state.cities)})
+      .then((res) => {state.cities = res.data.data})
       .catch((err) => console.log(err))
-    },
+    },*/
     //城市定位
     getCity (state){
     	axios.get('http://freegeoip.net/json/')
@@ -62,9 +62,9 @@ const store = new Vuex.Store({
     }
   },
   actions:{
-    acgetcities(context){
+    /*acgetcities(context){
       context.commit('getcities')
-    },
+    },*/
     acgetCity(context){
       context.commit('getCity')
     },

@@ -53,6 +53,7 @@
 
 <script>
 import {mapMutations} from 'vuex'
+import cities from "../../static/json/data.json"
 export default {
   name:'index',
   data () {
@@ -71,23 +72,14 @@ export default {
         {name: '三亚',pinyin: 'sanya'},
         {name: '天津',pinyin: 'tianjin'},
       ],                                                                      
-      citylist: [                                                        //城市列表
-        {name: '北京',pinyin: 'beijing'},
-        {name: '上海',pinyin: 'shanghai'},
-        {name: '南京',pinyin: 'nanjing'},
-        {name: '杭州',pinyin: 'hangzhou'},
-        {name: '宁波',pinyin: 'ningbo'},
-        {name: '黄山',pinyin: 'huangshan'},
-        {name: '三亚',pinyin: 'sanya'},
-        {name: '天津',pinyin: 'tianjin'},
-      ]
+      citiesdata:cities
     }
   },
   created () {
 
   },
   mounted () {
-    this.getcities()
+    /*this.getcities()*/
     this.getCity()
     this.getnowData()
     this.getairData()
@@ -113,11 +105,11 @@ export default {
     items () {                                                          //城市筛选
       let _search = this.search;
       if (_search) {
-        return this.$store.state.cities.filter(
+        return this.citiesdata.cities.filter(
         (product) => Object.keys(product).some((key) => String(product[key]).toLowerCase().indexOf(_search) > -1)
         )
       }
-      return this.citylist;
+      return this.citiesdata;
     },
     city () {
       return this.$store.state.city
@@ -134,13 +126,13 @@ export default {
     weekData () {
       return this.$store.state.weekData
     },
-    cities () {
+/*    cities () {
       return this.$store.state.cities
-    }
+    }*/
   },
   methods: {
     ...mapMutations([
-      'getcities',
+     /* 'getcities',*/
       'getCity',
       'getnowData',
       'getairData',
