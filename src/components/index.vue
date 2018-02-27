@@ -355,6 +355,9 @@ export default {
 .today407{
   background: url("../../static/img/d407.jpg")no-repeat;
 } 
+.today501{
+  background: url("../../static/img/d501.jpg")no-repeat;
+}
 /* 天气图标 */
  .icon{
   width: 58px;
